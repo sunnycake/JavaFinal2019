@@ -217,7 +217,10 @@ public class AppGUI extends JFrame {
             System.out.println("Update error");
         }
     }
-
+    /*Here I was try to get columns 1-8 to be editable, but was not able to.
+    * And I struggled with trying to delete the row from the database as well.
+    * When I click the delete button, the row gets deleted from the Jtable,
+    * but it's still in the database.*/
     private void configureTable() {
         //Method for the configuring table and editing column 1
         targetShopListTable.setAutoCreateRowSorter(true);

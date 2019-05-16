@@ -149,6 +149,9 @@ public class ItemsDB {
         }
     }
 
+    /*In this method I had originally assigned that the product_name which belonged to the
+    * first column as a String/Text. However, I couldn't pass the String type, but could pass
+     * an integer?*/
     public void deleteShopList(int product_name) {
 
         try (Connection connection = DriverManager.getConnection(DB_CONNECTION_URL);

@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
@@ -40,22 +42,11 @@ public class AppGUI extends JFrame {
     private DefaultTableModel tableModel;
     private Vector columnNames;
 
+
     AppGUI(ItemsDB db) {
 
         this.db = db;
 
-//        JTextField mCouponTextField = new JTextField();
-//        JComboBox mCouponQty = new JComboBox();
-//        JTextField sCouponTextField = new JTextField();
-//        JComboBox sCouponQty = new JComboBox();
-//        JComboBox itemQty = new JComboBox();
-//        JTextField costWithQTextField = new JTextField();
-//        JTextField costNoQTextField = new JTextField();
-//        JTextField productDealTextField = new JTextField();
-//        JTextField productCostTextField = new JTextField();
-//        JTextField receiveBackTextField = new JTextField();
-//        JTable targetShopListTable = new JTable();
-//        JTextField productNameTextField = new JTextField();
 
         setContentPane(mainPanel);
         pack();
@@ -167,11 +158,14 @@ public class AppGUI extends JFrame {
 
         int i = targetShopListTable.getSelectedRow();
         if (i >= 0) {
+            // remove a row from jtable
             tableModel.removeRow(i);
         } else {
-            System.out.println("Delete error");
+            int id = (Integer) tableModel.getValueAt(i, 0);
+            db.deleteShopList(id);
             updateTable();
         }
+        JOptionPane.showMessageDialog(deleteButton, "Deleted Successfully");
     }
 
     private void calculateCost() {
@@ -207,15 +201,15 @@ public class AppGUI extends JFrame {
         if (i >= 0) {
             tableModel.setValueAt(productNameTextField.getText(), i, 1);
             tableModel.setValueAt(productDealTextField.getText(), i, 2);
-            tableModel.setValueAt(mCouponTextField.getText(), i, 3);
-            tableModel.setValueAt(mCouponQty.getSelectedItem(), i, 4);
-            tableModel.setValueAt(sCouponTextField.getText(), i, 5);
-            tableModel.setValueAt(sCouponQty.getSelectedItem(), i, 6);
-            tableModel.setValueAt(itemQty.getSelectedItem(), i, 7);
-            tableModel.setValueAt(productCostTextField.getText(), i, 8);
-            tableModel.setValueAt(productNameTextField.getText(), i, 9);
-            tableModel.setValueAt(productNameTextField.getText(), i, 10);
-            tableModel.setValueAt(productNameTextField.getText(), i, 0);
+            tableModel.setValueAt(itemQty.getSelectedItem(), i, 3);
+            tableModel.setValueAt(mCouponTextField.getText(), i, 4);
+            tableModel.setValueAt(mCouponQty.getSelectedItem(), i, 5);
+            tableModel.setValueAt(sCouponTextField.getText(), i, 6);
+            tableModel.setValueAt(sCouponQty.getSelectedItem(), i, 7);
+            tableModel.setValueAt(taxTextField.getText(), i, 8);
+            tableModel.setValueAt(costNoQTextField.getText(), i, 9);
+            tableModel.setValueAt(costWithQTextField.getText(), i, 10);
+            tableModel.setValueAt(receiveBackTextField.getText(), i, 11);
 
         } else {
             System.out.println("Update error");
@@ -254,3 +248,4 @@ public class AppGUI extends JFrame {
 
 
 }
+

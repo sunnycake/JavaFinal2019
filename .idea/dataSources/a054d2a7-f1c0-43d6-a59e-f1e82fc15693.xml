@@ -83,5 +83,16 @@
       <Position>12</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
+    <index id="25" parent="7" name="sqlite_autoindex_targetShopView_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>product_name</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="26" parent="7" name="targetShopView_pk">
+      <ColNames>product_name</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_targetShopView_1</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

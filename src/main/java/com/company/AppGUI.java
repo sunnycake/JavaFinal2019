@@ -86,7 +86,7 @@ public class AppGUI extends JFrame {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //This resets all fields back to null.
                 productDealTextField.setText(null);
                 productNameTextField.setText(null);
                 productCostTextField.setText(null);
@@ -108,7 +108,7 @@ public class AppGUI extends JFrame {
     }
 
     private void addProduct() {
-
+        //getting the input and adding to the database.
         String weeklyDeal = productDealTextField.getText();
         String cost_NO_Q = costNoQTextField.getText();
         String costWITH_Q = costWithQTextField.getText();
@@ -155,7 +155,7 @@ public class AppGUI extends JFrame {
     }
 
     private void deleteSelected() {
-
+        //delete selected row.
         int i = targetShopListTable.getSelectedRow();
         if (i >= 0) {
             // remove a row from jtable
@@ -169,6 +169,8 @@ public class AppGUI extends JFrame {
     }
 
     private void calculateCost() {
+        /*converting numbers in order to calculate then
+         * inserting the calculated data into appropriate field box.*/
         double tax = Double.parseDouble(taxTextField.getText());
 
         double cost = Double.parseDouble(productCostTextField.getText());
@@ -196,7 +198,7 @@ public class AppGUI extends JFrame {
     }
 
     private void updateShopList() {
-
+        //update each column with data change.
         int i = targetShopListTable.getSelectedRow();
         if (i >= 0) {
             tableModel.setValueAt(productNameTextField.getText(), i, 1);
@@ -217,14 +219,7 @@ public class AppGUI extends JFrame {
     }
 
     private void configureTable() {
-
-//        JPanel jp = new JPanel();
-//        jp.add(targetShopListTable);
-//        jp.setLayout(new GridLayout(1,1));
-//        targetShopListTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//        targetShopListTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//        TableColumnModel columnModel = targetShopListTable.getColumnModel();
-
+        //Method for the configuring table and editing column 1
         targetShopListTable.setAutoCreateRowSorter(true);
         columnNames = db.getColumnNames();
         Vector data = db.getAllShopList();
@@ -232,7 +227,7 @@ public class AppGUI extends JFrame {
         tableModel = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int col) {
-                return (col == 3);  // Rating column only.
+                return (col == 0);  // Rating column only.
             }
 
         };

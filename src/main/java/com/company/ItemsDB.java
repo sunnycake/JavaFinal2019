@@ -38,7 +38,7 @@ public class ItemsDB {
     }
 
     private void createTable() {
-
+        //connecting to database and creating a table to store data.
         try (Connection connection = DriverManager.getConnection(DB_CONNECTION_URL);
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(CREATE_SHOPLIST_TABLE);
@@ -52,7 +52,7 @@ public class ItemsDB {
     }
 
     Vector getColumnNames() {
-
+        //getting column names.
         Vector colNames = new Vector();
         colNames.add("Product ");
         colNames.add("Weekly Deal");
@@ -72,7 +72,7 @@ public class ItemsDB {
     }
 
     Vector<Vector> getAllShopList() {
-
+        //taking all data and storing into a list.
         try (Connection connection = DriverManager.getConnection(DB_CONNECTION_URL);
              Statement statement = connection.createStatement()) {
 
